@@ -1,0 +1,9 @@
+<p>
+  Member Name: {{ memberName }}
+</p>
+<ul>
+  <li *ngFor="let member of members">
+    <a [routerLink]="['/member/profile', member.id ]">{{ member.name }}</a>
+  </li>
+</ul>
+<button (click)="goto()">Go to About page</button>
