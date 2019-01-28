@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-main',
@@ -7,7 +8,6 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-
   data;
   cityOptions = [];
   areaOptions = [];
@@ -38,5 +38,11 @@ export class MainComponent implements OnInit {
     } else {
       this.zipcode = '';
     }
+  }
+
+  send(f: NgForm) {
+    console.log(f.value);
+    // 送資料到後端 API
+    // this.http.post('api url', f.value).subscribe();
   }
 }
