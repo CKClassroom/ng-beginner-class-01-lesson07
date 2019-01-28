@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -7,11 +7,12 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-  @ViewChild('city') cityOption: ElementRef;
 
   data;
   cityOptions = [];
   areaOptions = [];
+  city = '';
+  area = '';
   zipcode = '';
 
   constructor(private http: HttpClient) {}
@@ -22,20 +23,18 @@ export class MainComponent implements OnInit {
       this.data = data;
     });
   }
-  cityOptionChange(event) {
-
-    if (event.target.value) {
-      this.areaOptions = Object.keys(this.data[event.target.value]);
+  cityOptionChange() {
+    if (this.city) {
+      this.areaOptions = Object.keys(this.data[this.city]);
     } else {
       this.areaOptions = [];
     }
     this.zipcode = '';
   }
 
-  areaOptionChange(event) {
-    const city = this.cityOption.nativeElement.value;
-    if (event.target.value) {
-      this.zipcode = this.data[city][event.target.value];
+  areaOptionChange() {
+    if (this.area) {
+      this.zipcode = this.data[this.city][this.area];
     } else {
       this.zipcode = '';
     }
