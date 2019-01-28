@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { NgForm, FormGroup, FormControl } from '@angular/forms';
+import {
+  NgForm,
+  FormGroup,
+  FormControl,
+  FormBuilder,
+  Validators
+} from '@angular/forms';
 
 @Component({
   selector: 'app-main',
@@ -13,17 +19,22 @@ export class MainComponent implements OnInit {
   //   area: '',
   //   zipcode:
   // }
-  formData = new FormGroup({
-    city: new FormControl(),
-    area: new FormControl(''),
-    zipcode: new FormControl()
+  // formData = new FormGroup({
+  //   city: new FormControl(),
+  //   area: new FormControl(''),
+  //   zipcode: new FormControl()
+  // });
+  formData = this.fb.group({
+    city: '',
+    area: '',
+    zipcode: [{ value: '', disabled: true }, [Validators.required]]
   });
 
   data;
   cityOptions = [];
   areaOptions = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private fb: FormBuilder) {}
 
   ngOnInit() {
     this.http.get('/assets/cityarea.json').subscribe(data => {
@@ -52,10 +63,14 @@ export class MainComponent implements OnInit {
   }
 
   areaOptionChange(area) {
-    return area ? this.data[this.formData.get('city').value][area] : '';
+    return this.data[this.formData.get('city').value][area] || '';
   }
 
   send() {
+    // 這裡的寫法在遇到 formControl 是 disable 時會有問題
+    console.log(this.formData.getRawValue()); // will include disable controls' value
+
+    //
     console.log(this.formData.value);
     // 送資料到後端 API
     // this.http.post('api url', f.value).subscribe();

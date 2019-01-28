@@ -11,10 +11,12 @@
     <option *ngFor="let option of areaOptions"> {{ option }} </option>
   </select>
 
-  <input type="text" formControlName="zipcode" />
+  <input type="text" formControlName="zipcode"/>
 
   <button type="button" (click)="send()">Send</button>
 </form>
+
+{{ formData.get('zipcode').errors | json }}
 
 <!-- Template Driven Form -->
 <!-- <form #f="ngForm" (ngSubmit)="send(f)">
@@ -32,3 +34,4 @@
 
   <button type="submit">Send</button>
 </form> -->
+
