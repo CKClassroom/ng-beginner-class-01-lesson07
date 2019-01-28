@@ -7,7 +7,7 @@ import { AboutComponent } from './about/about.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthGuard } from './auth.guard';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 const routes: Route[] = [
@@ -34,6 +34,7 @@ const routes: Route[] = [
     BrowserModule,
     RouterModule.forRoot(routes),
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule
   ],
   providers: [],

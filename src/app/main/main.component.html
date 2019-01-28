@@ -1,5 +1,23 @@
 <!-- 讀取 cityarea.json 檔案，產生縣市區郵遞區號的連動選單-->
-<form #f="ngForm" (ngSubmit)="send(f)">
+<!-- Reactive Form -->
+<form [formGroup]="formData">
+  <select formControlName="city">
+    <option value="">請選擇</option>
+    <option *ngFor="let option of cityOptions"> {{ option }} </option>
+  </select>
+
+  <select formControlName="area">
+    <option value="">請選擇</option>
+    <option *ngFor="let option of areaOptions"> {{ option }} </option>
+  </select>
+
+  <input type="text" formControlName="zipcode" />
+
+  <button type="button" (click)="send()">Send</button>
+</form>
+
+<!-- Template Driven Form -->
+<!-- <form #f="ngForm" (ngSubmit)="send(f)">
   <select name="city" [(ngModel)]="city" (change)="cityOptionChange()">
     <option value="">請選擇</option>
     <option *ngFor="let option of cityOptions"> {{ option }} </option>
@@ -13,4 +31,4 @@
   <input type="text" name="zipcode" [(ngModel)]="zipcode" />
 
   <button type="submit">Send</button>
-</form>
+</form> -->
