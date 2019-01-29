@@ -5,12 +5,12 @@
    - [ngModel](https://angular.io/api/forms/NgModel)
    - [ngModelGroup](https://angular.io/api/forms/NgModelGroup)
 2. Reactive Form
-- 需注入 `ReactiveFormsModule` from `@angular/forms`
-- FormGroup
-- FormControl
-- FormArray
-- FormBuilder
-- Validators: 表單驗證用
+  - 需注入 `ReactiveFormsModule` from `@angular/forms`
+  - FormGroup
+  - FormControl
+  - FormArray
+  - FormBuilder
+  - Validators: 表單驗證用
 
 ## 複習
 - FormControl 預設值寫法
@@ -31,7 +31,6 @@
   show data: {{ data }}
 </div>
 ```
-- 
 
 
 - FormGroup: ngForm, ngModelGroup
